@@ -45,11 +45,26 @@ INSERT INTO Rounds (person1_id, person2_id, tournament_id, round_date) VALUES
 (1, 2, 1, '2023-06-15'), -- Brian Ortega vs. Kron Gracie in IBJJF World Championship
 (6, 3, 2, '2021-07-10'); -- Gordon Ryan vs. Mackenzie Dern in UFC 264
 
--- Display all data as grid tables
-SELECT * FROM Users;
+-- a. Selecting data from one table (Selecting all people)
 SELECT * FROM People;
-SELECT * FROM Schools;
-SELECT * FROM MembershipAffiliation;
-SELECT * FROM Instructions;
-SELECT * FROM Tournaments;
-SELECT * FROM Rounds;
+
+-- b. Selecting data from two or more tables using a JOIN condition (Joining People and Schools)
+SELECT People.name AS fighter, Schools.name AS school_name, MembershipAffiliation.join_date
+FROM People
+JOIN MembershipAffiliation ON People.person_id = MembershipAffiliation.person_id
+JOIN Schools ON MembershipAffiliation.school_id = Schools.school_id;
+
+-- c. Inserting a row into a table using INSERT (Add a new fighter)
+INSERT INTO People (name, age, belt_rank, gender) 
+VALUES ('Andre Galvao', 41, 'Black Belt', 'Male');
+
+-- d. Updating a row using UPDATE (Update Kron Gracie's belt rank)
+UPDATE People
+SET belt_rank = 'Coral Belt'
+WHERE name = 'Kron Gracie';
+
+-- e. Deleting a row using DELETE (Delete Andre Galvao)
+DELETE FROM People WHERE name = 'Andre Galvao';
+
+-- Display all data from People after the updates
+SELECT * FROM People;

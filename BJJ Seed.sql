@@ -6,9 +6,12 @@ USE bjj_lineage;
 -- Create Users table
 CREATE TABLE Users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     password VARCHAR(100) NOT NULL
 );
+
 
 -- Create People table (BJJ fighters and instructors)
 CREATE TABLE People (
